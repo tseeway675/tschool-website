@@ -1,0 +1,528 @@
+@font-face {
+    font-family: 'Cubic-11';
+    src: url('Cubic-11-1.430/fonts/web/Cubic_11.woff2') format('woff2'),
+         url('Cubic-11-1.430/fonts/web/Cubic_11.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #3498db;
+    --text-color: #333;
+    --light-bg: #f8f9fa;
+}
+.fa-cog {
+    color: white;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cubic-11', monospace;
+    line-height: 1.6;
+    color: var(--text-color);
+    letter-spacing: 0.05em;
+}
+
+/* Navigation */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: #000000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+.nav-links img {
+    width: 20px; /* Set the icon size to 20px */
+    height: 20px; /* Set the icon height to 20px */
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.search-icon {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.search-icon:hover {
+    transform: scale(1.1);
+}
+
+.search input {
+    font-family: 'Cubic-11', monospace;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    width: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.search:hover input,
+.search.has-content input {
+    width: 200px;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.search input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search input:focus {
+    outline: none;
+    border-bottom: 1px solid white;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;  /* Ensure the hero section takes full height */
+    background: url('bg-img/slideshow.gif');  /* Change background image to bg-img/1.png */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-blur {
+    /* Removed blur effect */
+    /* filter: blur(5px); */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);  /* Dark filter with 30% opacity */
+    z-index: 0;
+}
+
+.background-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Ensure images do not overflow */
+    z-index: 0; /* Set z-index to ensure it is behind the text */
+}
+
+.background-slideshow div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.background-slideshow div.active {
+    opacity: 1;
+}
+
+.background-1 {
+    background-image: url('bg-img/1.png');
+}
+
+.background-2 {
+    background-image: url('bg-img/2.jpg');
+}
+
+.background-3 {
+    background-image: url('bg-img/3.png');
+}
+
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: 0 auto;
+  z-index: 0; /* Set z-index to ensure it is behind the text */
+}
+
+.mySlides {
+  display: none; /* Hide images by default */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  z-index: 1; /* Ensure text is above the slideshow */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1; /* Ensure content is above the slideshow */
+    padding: 2rem;
+}
+
+.digital-font {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.2em;
+    color: white;
+}
+.hero h2 {
+
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+}
+
+.cta-button {
+    width: 305px; /* Specify the width */
+    height: 141px; /* Specify the height */
+    background-image: url('images/Property 1=Group 6.png'); /* Initial background image */
+    background-size: cover; /* Ensure the image covers the entire area */
+    background-position: center; /* Center the image */
+    transition: background-image 0.5s ease-in-out, transform 0.3s ease; /* Smooth transition */
+    display: block;  /* Ensure it displays as a block element */
+    margin: 0 auto;  /* Center the button horizontally */
+    padding: 0;  /* Remove padding for image button */
+    background-color: transparent; /* Ensure background color is transparent */
+    border: none;
+    cursor: pointer;
+    font-size: 0;  
+}
+
+.cta-button:hover {
+    background-image: url('images/Property 1=Group 5.png'); /* Change on hover */
+    opacity: 1; /* Ensure opacity is set to 1 on hover */
+    transform: translateY(-2px);
+}
+
+/* Features Section */
+.features {
+    padding: 5rem 2rem;
+    background-color: var(--light-bg);
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Exploration Section */
+.exploration {
+    text-align: left;  /* Align text to the left */
+    padding: 2rem 1rem;
+    background-color: black;  /* Change background color to black */
+    color: white;  /* Change text color to white for contrast */
+    font-family: 'Cubic-11', monospace;
+}
+
+.exploration h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.exploration p {
+    font-size: 1.25rem;
+    margin-top: 0;
+}
+
+/* Learn More Button */
+.learn-more-btn {
+    display: inline-block;
+    width: 160px;
+    height: 48px;
+    background-image: url('images/Property 1=Group 6.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-size: 0;  
+}
+
+.learn-more-btn:hover {
+    transform: translateY(-2px);
+}
+
+.learn-more-btn.disabled {
+    pointer-events: none; /* Disable pointer events */
+    opacity: 0.5; /* Optional: make it look disabled */
+}
+
+/* Image Section */
+.image-section {
+    text-align: center;
+    padding: 1rem;
+}
+
+.classroom-image {
+    max-width: 50%;  /* Set width to 50% to match the title length */
+    height: auto;  /* Maintain aspect ratio */
+    border-radius: 8px;  /* Optional: Add some rounding to the corners */
+    display: block;  /* Ensure it displays as a block element */
+    margin-top: 1rem;  /* Add some spacing above the image */
+}
+
+.image-overlay {
+    position: fixed; /* Keep it fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; /* Use flexbox to center content */
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: dark overlay */
+    z-index: 1001; /* Ensure it appears above the blurred hero section */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.floating-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.floating-button img {
+    width: 300px; /* Increase the size of the button images to be larger */
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.floating-button:hover img {
+    transform: scale(1.1); /* Reduce the scale on hover */
+}
+
+.image-overlay img {
+    filter: none; /* Ensure no blur effect is applied to the images */
+    max-width: 400px; /* Increase the max width for the images to be 200% larger */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.image-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001; 
+}
+
+.image-popup img {
+    max-width: none; 
+    width: auto; 
+    height: auto; 
+}
+
+.close-popup {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3rem 2rem 1rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-info h3 {
+    margin-bottom: 1rem;
+}
+
+.footer-info p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-info i {
+    margin-right: 0.5rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .digital-font {
+        font-size: 3rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        align-items: center;
+    }
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: black;
+    color: white;
+}
+
+.divider {
+    width: 5px; /* Make the divider line thinner */
+    background-color: #ccc;
+    height: 20px;
+    margin: 0 30px;
+}
+
+.divider-image img {
+    width: 2%; /* Scale down the divider line image to be smaller */
+    height: auto;
+}
+
+.text-content {
+    flex: 1;
+}
+
+.image-container {
+    flex: 1;
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+.left-aligned-title {
+    text-align: left;
+    font-size: 40px; /* Adjust the size as needed */
+}
